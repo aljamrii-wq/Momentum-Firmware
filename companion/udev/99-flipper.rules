@@ -1,0 +1,3 @@
+# Flipper Zero stable symlink: /dev/flipper
+# Install: sudo cp 99-flipper.rules /etc/udev/rules.d/ && sudo udevadm control --reload && sudo udevadm trigger
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", SYMLINK+="flipper", MODE="0666"
