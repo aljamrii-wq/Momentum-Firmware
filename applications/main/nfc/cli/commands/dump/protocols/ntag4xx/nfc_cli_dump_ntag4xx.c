@@ -1,8 +1,6 @@
 #include "nfc_cli_dump_ntag4xx.h"
 #include <nfc/protocols/ntag4xx/ntag4xx_poller.h>
 
-#define TAG "NTAG4XX"
-
 NfcCommand nfc_cli_dump_poller_callback_ntag4xx(NfcGenericEvent event, void* context) {
     furi_assert(context);
     furi_assert(event.protocol == NfcProtocolNtag4xx);
@@ -20,7 +18,7 @@ NfcCommand nfc_cli_dump_poller_callback_ntag4xx(NfcGenericEvent event, void* con
         command = NfcCommandStop;
     } else if(ntag4xx_event->type == Ntag4xxPollerEventTypeReadFailed) {
         instance->result = NfcCliDumpErrorFailedToRead;
-        command = NfcCommandReset;
+        command = NfcCommandStop;
     }
 
     if(command == NfcCommandStop) {
